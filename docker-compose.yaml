@@ -13,6 +13,8 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - ./app:/app
+      - ./app/tests:/app/tests
+
   db:
     image: mongo
     container_name: my-mongo

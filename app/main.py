@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from database import CLIENT
 
 # Create an instance of the FastAPI class
 app = FastAPI()

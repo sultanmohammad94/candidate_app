@@ -3,16 +3,20 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: Dockerfile_fastapi
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     depends_on:
-      - mongo
-    env_file:
-      - .env
-  mongo:
-    build:
-      context: .
-      dockerfile: Dockerfile_mongo
+      - db
+    environment:
+      - MONGO_DB_URI=${MONGO_DB_URI}
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./app:/app
+  db:
+    image: mongo
+    container_name: my-mongo
     ports:
       - "27017:27017"
+    restart: always
+    env_file: .env

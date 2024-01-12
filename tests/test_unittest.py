@@ -1,6 +1,6 @@
-from unittest import TestCase
+import unittest
 
-class TestTDDWorking(TestCase):
+class TestTDDWorking(unittest.TestCase):
     """This test ensure that Unittest is working properly"""
     
     def test_not_equal_numbers(self):
@@ -12,3 +12,6 @@ class TestTDDWorking(TestCase):
     def test_number_equals_one(self):
         n = 1
         self.assertEqual(n, 1)
+
+if __name__ == '__main__':
+    unittest.main()

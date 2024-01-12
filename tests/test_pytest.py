@@ -12,3 +12,6 @@ def test_even_number():
 def test_odd_number():
     n = 3
     assert n %2 != 0 #Check if n is odd number
+
+if __name__ == '__main__':
+    pytest.main()

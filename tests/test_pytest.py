@@ -2,8 +2,8 @@ import pytest
 
 
 def test_is_lower():
-    s = 'abcd'
-    assert s.islower() == 'abcd' #Check if the string is lower
+    s = 'abcde'
+    assert s.islower() == True #Check if the string is lower
 
 def test_even_number():
     n = 2

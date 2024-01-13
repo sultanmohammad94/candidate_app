@@ -11,7 +11,7 @@ class IUserRepository(ABC):
         pass
 
     @abstractmethod
-    def get_user(self, user_id: str) -> Optional[UserBaseModel]:
+    def get_user(self, user_uuid: str) -> Optional[UserBaseModel]:
         '''Get a user from the repository using its UUID'''
         pass
 
@@ -21,7 +21,7 @@ class IUserRepository(ABC):
         pass
 
     @abstractmethod
-    def delete_user(self, user_id: str) -> bool:
+    def delete_user(self, user_uuid: str) -> bool:
         '''Delete a user from the repository'''
         pass
 
@@ -42,15 +42,15 @@ class UserInMemoryRepository(IUserRepository):
     def get_user(self, user_uuid: str) -> Optional[UserBaseModel]:
         '''Get a user from the repository using uuid''' 
         return self.users.get(user_uuid)
-
-    def update_user(self, user_id: str, user: UserBaseModel) -> Optional[UserBaseModel]:
-        if user_id in self.users:
-            self.users[user_id] = user
+    
+    def update_user(self, user_uuid: str, user: UserBaseModel) -> Optional[UserBaseModel]:
+        if user_uuid in self.users:
+            self.users[user_uuid] = user
             return user
         return None
 
-    def delete_user(self, user_id: str) -> bool:
-        if user_id in self.users:
-            del self.users[user_id]
+    def delete_user(self, user_uuid: str) -> bool:
+        if user_uuid in self.users:
+            del self.users[user_uuid]
             return True
         return False

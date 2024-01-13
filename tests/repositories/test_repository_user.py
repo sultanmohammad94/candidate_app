@@ -68,6 +68,11 @@ class TestUserInMemoryRepository(unittest.TestCase):
         result = self.user_repository.delete_user(user_UUID)
         self.assertTrue(result)
         
+    def test_unique_user(self):
+        self.user_repository.create_user(self.user_data)
+        with self.assertRaises(Exception):
+            self.user_repository.create_user(self.user_data)
 
+        
 if __name__ == '__main__':
     unittest.main()

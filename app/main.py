@@ -17,7 +17,6 @@ def get_database():
 # Use a dependency to get the database connection when needed
 async def get_db():
     db = get_database()
-    
     ApplicationLogger().log_info(f'Connected to the {db.name} Database')
     
     try:

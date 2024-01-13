@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from utils.logger import ApplicationLogger
 from database import MongoDBConnection, MongoURIConnection
 from settings import MONGO_DB_SETTINGS
+from utils.logger import ApplicationLogger
+from routes.user_routes import user_router
 
 
 # Create an instance of the FastAPI class
@@ -25,7 +26,10 @@ async def get_db():
         # Clean up the database connection if needed
         db.close()
     
+    
+app.include_router(user_router)
 
+#Todo Create a service, router, and controller
 @app.get("/health", status_code=200)
 async def server_health():
     return {"message": "Server is running"}

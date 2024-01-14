@@ -2,8 +2,6 @@ import unittest
 from repositories.user_repositories import UserInMemoryRepository
 from factories.user_factory import UserFactory
 from models.user import UserBaseModel
-from utils.logger import ApplicationLogger
-
 
 class TestUserInMemoryRepository(unittest.TestCase):
     def setUp(self):

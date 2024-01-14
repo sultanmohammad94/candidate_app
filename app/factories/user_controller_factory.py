@@ -4,6 +4,7 @@ from typing import List, Tuple
 
 class ControllerFactory:
     """This class is responsible for creating controllers for a given user repository."""
+    
     @staticmethod
     def create_controllers(repository: IUserRepository) -> List[Tuple[str, UserControllerBase]]:
         controllers = []

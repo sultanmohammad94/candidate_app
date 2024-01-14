@@ -1,11 +1,9 @@
 import unittest
 from factories.user_factory import UserFactory
-from utils.logger import ApplicationLogger
 
 class TestUserFactory(unittest.TestCase):
     def test_create_user(self):
         user = UserFactory.create()
-        ApplicationLogger().log_debug(f'USER: {user}')
         self.assertIsNotNone(user)
 
     def test_bulk_create_users(self):

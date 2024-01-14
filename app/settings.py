@@ -1,6 +1,5 @@
 import os
 from urllib.parse import quote_plus
-from utils.logger import ApplicationLogger
 
 # Read the .env environment variables
 username: str = os.environ['MONGO_INITDB_ROOT_USERNAME']

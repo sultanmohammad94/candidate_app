@@ -1,4 +1,4 @@
-from models.user import UserBaseModel, ProfileBaseModel
+from models.user import UserBaseModel
 from repositories.user_repositories import IUserRepository
 from models.user import UserBaseModel
 from typing import Optional

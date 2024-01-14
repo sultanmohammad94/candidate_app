@@ -6,7 +6,7 @@ from settings import MONGO_DB_SETTINGS
 from utils.logger import ApplicationLogger
 from pymongo import MongoClient
 
-class TestAppIntegration(unittest.TestCase):
+class TestAppMongoIntegration(unittest.TestCase):
     
     def setUp(self):
         """Run before each test."""
@@ -25,11 +25,9 @@ class TestAppIntegration(unittest.TestCase):
             connection_info = MongoURIConnection(uri)
             client = MongoDBConnection(connection_info, db_name='test_db')
             database = client.connect()
-            ApplicationLogger().log_info(f'Connected to the {database.name} Database')
             
             self.assertIsNotNone(database)
             self.assertEqual(database.name, client.database.name)
-            ApplicationLogger().log_info(f'Mongo_URI: {self.mongo_uri}')
             
         except Exception as e:
             ApplicationLogger().log_error(f'test_database_connectivity: {str(e)}')

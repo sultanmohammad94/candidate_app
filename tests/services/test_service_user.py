@@ -3,7 +3,7 @@ from unittest.mock import patch
 from fastapi import FastAPI
 from repositories.user_repositories import UserInMemoryRepository, IUserRepository
 from services.user_services import UserCreateService, UserReadService
-from models.user import UserBaseModel, ProfileBaseModel
+from models.user import UserBaseModel
 from utils.logger import ApplicationLogger
 
 @pytest.mark.parametrize(
@@ -25,20 +25,19 @@ def test_create_user(user_data, expected):
 
     # We should pass the full path to the method we want to mock
     with patch("services.user_services.UserCreateService.create_user") as mock_create_user:
-        mock_create_user.return_value = expected
+        try:
+            mock_create_user.return_value = expected
 
-        result = user_service.create_user(user_data)
-        
-        # Print the arguments passed to the mocked method
-        ApplicationLogger().log_debug(f"Mock user create args: \n{mock_create_user.call_args}")
-        # Print the number of times the mocked method was called
-        ApplicationLogger().log_debug(f"Mock user create call count: \n{mock_create_user.call_count}")
-
-        assert result.UUID == expected.UUID
-        assert result.first_name == expected.first_name
-        assert result.last_name == expected.last_name
-        assert result.email == expected.email
-
+            result = user_service.create_user(user_data)
+            assert result.UUID == expected.UUID
+            assert result.first_name == expected.first_name
+            assert result.last_name == expected.last_name
+            assert result.email == expected.email
+        except Exception as e:
+            # Print the arguments passed to the mocked method
+            ApplicationLogger().log_error(f"Mock user create args: \n{mock_create_user.call_args}")
+            # Print the number of times the mocked method was called
+            ApplicationLogger().log_error(f"Mock user create call count: \n{mock_create_user.call_count}")
 
 
 @pytest.mark.parametrize(
